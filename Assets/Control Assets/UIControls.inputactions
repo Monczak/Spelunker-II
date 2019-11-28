@@ -1,0 +1,193 @@
+{
+    "name": "UIControls",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "16f828b1-f4f7-4ad2-a16d-960844a50cb8",
+            "actions": [
+                {
+                    "name": "Left Click",
+                    "type": "PassThrough",
+                    "id": "6604b07c-7071-48f6-b4d1-39fff921b89e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right Click",
+                    "type": "PassThrough",
+                    "id": "7007cc5f-21d1-49d5-9236-9af1f87de50c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Scroll",
+                    "type": "PassThrough",
+                    "id": "650b70f6-568b-45d8-9765-04ed0fcf7e9f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Point",
+                    "type": "PassThrough",
+                    "id": "4d476f35-89a3-47ff-90b9-d18deb8a897f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4a8c3e96-8311-47ab-b66c-cbc46dd465ef",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b63d246d-cacf-4dc4-9048-b57ea7da94bb",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "114b12b1-b1b3-4e36-8434-01f714d630a9",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2fcd660d-c7e6-4649-a2a3-3b8d912b1c85",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard",
+            "id": "8cf10ed8-5b0b-4977-8f64-38e775c21d2b",
+            "actions": [
+                {
+                    "name": "Submit",
+                    "type": "PassThrough",
+                    "id": "540d1b2c-9b05-45ef-b556-d28a1eaed05e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "b8fd123f-d764-4ccb-8825-0ad0015ebe1e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Previous Command",
+                    "type": "PassThrough",
+                    "id": "9faca358-938b-44d7-9692-e27cb50349ea",
+                    "expectedControlType": "Key",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Next Command",
+                    "type": "PassThrough",
+                    "id": "01ec466c-ba1c-4008-97a5-b5a9fc46f814",
+                    "expectedControlType": "Key",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Show/Hide Console",
+                    "type": "Button",
+                    "id": "2bfa3c88-1d37-4ef5-a6e1-a189207c6ffb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b1d843ad-8e99-4fb4-b5a6-584ce1a04f58",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3deb8d01-297f-40cf-9716-1a2f01a5e653",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c1e140bb-2ea8-49d6-a16e-544522db8873",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Previous Command",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "758062fd-1152-48f3-95a1-42378b2bf3df",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Next Command",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b0796f3-9747-4793-b085-4a4e417f5178",
+                    "path": "<Keyboard>/backslash",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Show/Hide Console",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

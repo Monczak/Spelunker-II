@@ -1,0 +1,28 @@
+SPELUNKER II
+CREDITS
+(Draft)
+
+A game by Monczak
+Made with Unity
+
+
+SPECIAL THANKS
+--------------
+
+INSPIRATION
+Sebastian Lague
+
+Soundtrack heavily inspired by Hollow Knight (Team Cherry)
+
+PLAYTESTERS
+(playtesters go here)
+
+ADDITIONAL DESIGN & PROGRAMMING
+Rambox
+Barto
+
+--------------
+
+
+Thank you so much for playing!
+Consider sharing the game to your friends.

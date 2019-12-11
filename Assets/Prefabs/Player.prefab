@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 7032618336076625989}
   - component: {fileID: 4585944435801304793}
   - component: {fileID: 1890903209162675951}
+  - component: {fileID: 2301729157926555629}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -227,3 +228,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: 
+--- !u!114 &2301729157926555629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570690157126206533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1449465c9bc272f41b93dc87b1e7bc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayCount: 16
+  evaluationsPerSecond: 5
+  maxDistance: 100
+  mask:
+    serializedVersion: 2
+    m_Bits: 34816
+  audioMixerGroup: {fileID: 1234254979492559734, guid: 195a48d23b690744bb89e16bca3908ff,
+    type: 2}
+  parameterChangeSpeed: 8

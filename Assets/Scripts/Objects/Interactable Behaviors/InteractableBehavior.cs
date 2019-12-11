@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Interactable))]
 public abstract class InteractableBehavior : MonoBehaviour
 {
     public string promptText;

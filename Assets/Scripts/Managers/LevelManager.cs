@@ -25,6 +25,12 @@ public class LevelManager : MonoBehaviour
     public delegate void OnLevelLoadedDelegate();
     public event OnLevelLoadedDelegate OnLevelLoaded;
 
+    public delegate void OnLevelVerticalTransitionDelegate();
+    public event OnLevelVerticalTransitionDelegate OnLevelVerticalTransition;
+
+    public delegate void OnLevelHorizontalTransitionDelegate();
+    public event OnLevelHorizontalTransitionDelegate OnLevelHorizontalTransition;
+
     private void Awake()
     {
         #region Singleton
@@ -171,6 +177,8 @@ public class LevelManager : MonoBehaviour
     {
         if (!loadingLevel)
         {
+            OnLevelVerticalTransition?.Invoke();
+
             VerticalLevelExit exit = (VerticalLevelExit)connection.exit;
 
             loadingLevel = true;
@@ -200,6 +208,8 @@ public class LevelManager : MonoBehaviour
     {
         if (!loadingLevel)
         {
+            OnLevelHorizontalTransition?.Invoke();
+
             HorizontalLevelExit exit = (HorizontalLevelExit)connection.exit;
             exit.trigger.OnPlayerEnterTrigger -= LoadLevelFromHorizontalExit;
 

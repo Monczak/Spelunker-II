@@ -6,6 +6,8 @@ public class FadeoutController : MonoBehaviour
 {
     private Animator animator;
 
+    public float duration;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();

@@ -31,6 +31,12 @@ public class LevelManager : MonoBehaviour
     public delegate void OnLevelHorizontalTransitionDelegate();
     public event OnLevelHorizontalTransitionDelegate OnLevelHorizontalTransition;
 
+    LevelConnection lastLevelConnection;
+
+    float scheduledLoadTime;
+    bool scheduledLoadType;
+    bool scheduledLoad = false;
+
     private void Awake()
     {
         #region Singleton
@@ -39,6 +45,16 @@ public class LevelManager : MonoBehaviour
         #endregion
 
 
+    }
+
+    private void Update()
+    {
+        if (scheduledLoad && Time.time > scheduledLoadTime)
+        {
+            if (scheduledLoadType) _LoadLevelFromHorizontalExit();
+            else _LoadLevelFromVerticalExit();
+            scheduledLoad = false;
+        }
     }
 
     private void LateUpdate()
@@ -179,29 +195,38 @@ public class LevelManager : MonoBehaviour
         {
             OnLevelVerticalTransition?.Invoke();
 
-            VerticalLevelExit exit = (VerticalLevelExit)connection.exit;
+            lastLevelConnection = connection;
 
-            loadingLevel = true;
-
-            Destroy(GameManager.Instance.playerController.digboxController.gameObject);
-            Destroy(GameManager.Instance.playerController.gameObject);
-
-            DestroyLevelFeatures();
-
-            currentLevel.Save();
-            currentLevel.Unload();
-
-            currentLevel = connection.to;
-            currentLevel.Load();
-            //GenerateLevelFeatures();
-
-            VerticalLevelExit oppositeExit = (VerticalLevelExit)currentLevel.verticalConnections[(int)(1 - exit.direction)].exit;
-
-            Vector2Int pos = oppositeExit.playerSpawnPos;
-
-            GameManager.Instance.PrepareForPlayerSpawn(pos);
-            //StartCoroutine(DelayedLoadFinish());
+            scheduledLoad = true;
+            scheduledLoadType = false;
+            scheduledLoadTime = Time.time + UIManager.Instance.fadeoutController.duration;
         }
+    }
+
+    void _LoadLevelFromVerticalExit()
+    {
+        VerticalLevelExit exit = (VerticalLevelExit)lastLevelConnection.exit;
+
+        loadingLevel = true;
+
+        Destroy(GameManager.Instance.playerController.digboxController.gameObject);
+        Destroy(GameManager.Instance.playerController.gameObject);
+
+        DestroyLevelFeatures();
+
+        currentLevel.Save();
+        currentLevel.Unload();
+
+        currentLevel = lastLevelConnection.to;
+        currentLevel.Load();
+        //GenerateLevelFeatures();
+
+        VerticalLevelExit oppositeExit = (VerticalLevelExit)currentLevel.verticalConnections[(int)(1 - exit.direction)].exit;
+
+        Vector2Int pos = oppositeExit.playerSpawnPos;
+
+        GameManager.Instance.PrepareForPlayerSpawn(pos);
+        //StartCoroutine(DelayedLoadFinish());
     }
 
     private void LoadLevelFromHorizontalExit(LevelConnection connection)
@@ -210,52 +235,61 @@ public class LevelManager : MonoBehaviour
         {
             OnLevelHorizontalTransition?.Invoke();
 
-            HorizontalLevelExit exit = (HorizontalLevelExit)connection.exit;
-            exit.trigger.OnPlayerEnterTrigger -= LoadLevelFromHorizontalExit;
+            lastLevelConnection = connection;
 
-            loadingLevel = true;
-            //Debug.Log(string.Format("Entered trigger to {0}", connection.to.gridPosition));
-
-            //GameManager.Instance.playerController.UnloadInputEvents();
-
-            Destroy(GameManager.Instance.playerController.digboxController.gameObject);
-            Destroy(GameManager.Instance.playerController.gameObject);
-
-            DestroyLevelFeatures();
-
-            currentLevel.Save();
-            currentLevel.Unload();
-
-            currentLevel = connection.to;
-            currentLevel.Load();
-            //GenerateLevelFeatures();
-
-            HorizontalLevelExit oppositeExit = (HorizontalLevelExit)currentLevel.sideConnections[((int)((HorizontalLevelExit)connection.exit).direction + 2) % 4].exit;
-
-            Vector2Int pos = new Vector2Int(oppositeExit.pos.tileX, oppositeExit.pos.tileY) - Vector2Int.one * currentLevel.borderSize;
-
-            switch (oppositeExit.direction)
-            {
-                case HorizontalDirection.West:
-                    pos += Vector2Int.right * (oppositeExit.size.x / 2 - 1);
-                    break;
-                case HorizontalDirection.North:
-                    pos += Vector2Int.down * (oppositeExit.size.y / 2 - 1);
-                    break;
-                case HorizontalDirection.East:
-                    pos += Vector2Int.left * (oppositeExit.size.x / 2 - 1);
-                    break;
-                case HorizontalDirection.South:
-                    pos += Vector2Int.up * (oppositeExit.size.y / 2 - 1);
-                    break;
-            }
-
-            GameManager.Instance.PrepareForPlayerSpawn(pos);
-            //SpawnPlayer();
-
-            //StartCoroutine(DelayedLoadFinish());
+            scheduledLoad = true;
+            scheduledLoadType = true;
+            scheduledLoadTime = Time.time + UIManager.Instance.fadeoutController.duration;
         }
 
+    }
+
+    void _LoadLevelFromHorizontalExit()
+    {
+        HorizontalLevelExit exit = (HorizontalLevelExit)lastLevelConnection.exit;
+        exit.trigger.OnPlayerEnterTrigger -= LoadLevelFromHorizontalExit;
+
+        loadingLevel = true;
+        //Debug.Log(string.Format("Entered trigger to {0}", connection.to.gridPosition));
+
+        //GameManager.Instance.playerController.UnloadInputEvents();
+
+        Destroy(GameManager.Instance.playerController.digboxController.gameObject);
+        Destroy(GameManager.Instance.playerController.gameObject);
+
+        DestroyLevelFeatures();
+
+        currentLevel.Save();
+        currentLevel.Unload();
+
+        currentLevel = lastLevelConnection.to;
+        currentLevel.Load();
+        //GenerateLevelFeatures();
+
+        HorizontalLevelExit oppositeExit = (HorizontalLevelExit)currentLevel.sideConnections[((int)((HorizontalLevelExit)lastLevelConnection.exit).direction + 2) % 4].exit;
+
+        Vector2Int pos = new Vector2Int(oppositeExit.pos.tileX, oppositeExit.pos.tileY) - Vector2Int.one * currentLevel.borderSize;
+
+        switch (oppositeExit.direction)
+        {
+            case HorizontalDirection.West:
+                pos += Vector2Int.right * (oppositeExit.size.x / 2 - 1);
+                break;
+            case HorizontalDirection.North:
+                pos += Vector2Int.down * (oppositeExit.size.y / 2 - 1);
+                break;
+            case HorizontalDirection.East:
+                pos += Vector2Int.left * (oppositeExit.size.x / 2 - 1);
+                break;
+            case HorizontalDirection.South:
+                pos += Vector2Int.up * (oppositeExit.size.y / 2 - 1);
+                break;
+        }
+
+        GameManager.Instance.PrepareForPlayerSpawn(pos);
+        //SpawnPlayer();
+
+        //StartCoroutine(DelayedLoadFinish());
     }
 
     IEnumerator DelayedLoadFinish()

@@ -55,7 +55,7 @@ public class LevelGraph
                     sideConnections = new LevelConnection[4] { null, null, null, null },
                     verticalConnections = new LevelConnection[2] { null, null },
                     gridPosition = new Vector3Int(0, 0, 0),
-                    exitSize = new Vector2Int(10, 4)
+                    exitSize = new Vector2Int(10, 7)
                 }
             }
         };
@@ -87,7 +87,7 @@ public class LevelGraph
         for (int i = 0; i < 4; i++)
         {
             //Debug.Log("Going " + branchDirNames[i]);
-            if (GameManager.Instance.rng.NextDouble() < sideConnectionChance)
+            if (GameManager.Instance.levelGenRng.NextDouble() < sideConnectionChance)
             {
                 if (grid[pos].sideConnections[i] == null)
                 {
@@ -107,7 +107,7 @@ public class LevelGraph
                             verticalConnections = new LevelConnection[2] { null, null },
                             depth = currentDepth + 1,
                             gridPosition = pos + branchDirs[i],
-                            exitSize = new Vector2Int(10, 4)
+                            exitSize = new Vector2Int(10, 7)
                         });
 
                         grid[pos + branchDirs[i]].Pregenerate();
@@ -151,10 +151,10 @@ public class LevelGraph
             //else Debug.Log("Won't generate connection (RNG)"); 
         }
 
-        if (GameManager.Instance.rng.NextDouble() < verticalConnectionChance)
+        if (GameManager.Instance.levelGenRng.NextDouble() < verticalConnectionChance)
         {
             // Down - true, up - false
-            bool connectionDirection = GameManager.Instance.rng.NextDouble() < .5f || grid[pos].verticalDepth == 0;
+            bool connectionDirection = GameManager.Instance.levelGenRng.NextDouble() < .5f || grid[pos].verticalDepth == 0;
             int cDirection = connectionDirection ? 1 : 0;
             //Debug.Log("Going " + (connectionDirection ? "down" : "up"));
 
@@ -177,7 +177,7 @@ public class LevelGraph
                         depth = currentDepth + 1,
                         verticalDepth = grid[pos].verticalDepth + 1,
                         gridPosition = pos + verticalDirs[cDirection],
-                        exitSize = new Vector2Int(10, 4)
+                        exitSize = new Vector2Int(10, 7)
                     });
 
                     grid[pos + verticalDirs[cDirection]].Pregenerate();

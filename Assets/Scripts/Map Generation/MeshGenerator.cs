@@ -108,7 +108,7 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                caveMeshHeightMap[x, y] = ((float)GameManager.Instance.rng.NextDouble() * 2 - 1) * caveMeshRipple;
+                caveMeshHeightMap[x, y] = ((float)GameManager.Instance.levelGenRng.NextDouble() * 2 - 1) * caveMeshRipple;
             }
         }
 

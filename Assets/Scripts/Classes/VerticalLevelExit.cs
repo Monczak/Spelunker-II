@@ -19,9 +19,9 @@ public sealed class VerticalLevelExit : LevelExit
         bool success = false;
         while (!success)
         {
-            Room pickedRoom = rooms[GameManager.Instance.rng.Next() % rooms.Count];
+            Room pickedRoom = rooms[GameManager.Instance.levelGenRng.Next() % rooms.Count];
 
-            Coord pickedTile = pickedRoom.innerTiles[GameManager.Instance.rng.Next() % pickedRoom.innerTiles.Count];
+            Coord pickedTile = pickedRoom.innerTiles[GameManager.Instance.levelGenRng.Next() % pickedRoom.innerTiles.Count];
             pos = pickedTile;
 
             try
@@ -54,7 +54,7 @@ public sealed class VerticalLevelExit : LevelExit
             throw new Exception();
         }
 
-        pickedTile = potentialCoords[GameManager.Instance.rng.Next(potentialCoords.Count)];
+        pickedTile = potentialCoords[GameManager.Instance.levelGenRng.Next(potentialCoords.Count)];
         playerSpawnPos = new Vector2Int(pickedTile.tileX, pickedTile.tileY);
     }
 }

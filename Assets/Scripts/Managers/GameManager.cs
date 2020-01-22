@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     [Header("Properties")]
     public string rngSeed;
 
-    public System.Random rng;
+    public System.Random levelGenRng, genericRng;
 
     public LayerMask groundMask;
 
@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         groundMask = LayerMask.GetMask("Ground");
         mainCam = Camera.main;
         cameraFollow = mainCam.GetComponent<CameraFollow>();
+        genericRng = new System.Random();
         UpdateRNG();
 
         // TODO: Load from JSON
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateRNG()
     {
-        rng = new System.Random(rngSeed.GetHashCode());
+        levelGenRng = new System.Random(rngSeed.GetHashCode());
     }
 
     // Start is called before the first frame update

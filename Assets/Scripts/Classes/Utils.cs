@@ -28,7 +28,7 @@ public static class Utils
     public static Color RandomColorBetween(Color col1, Color col2, ColorModel model)
     {
         Color result = new Color();
-        float rand = (float)GameManager.Instance.rng.NextDouble();
+        float rand = (float)GameManager.Instance.levelGenRng.NextDouble();
         switch (model)
         {
             case ColorModel.RGB:

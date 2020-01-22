@@ -116,7 +116,7 @@ public class Level
     {
         try
         {
-            return shortestExitPaths[direction][GameManager.Instance.rng.Next(shortestExitPaths[direction].Count)];
+            return shortestExitPaths[direction][GameManager.Instance.levelGenRng.Next(shortestExitPaths[direction].Count)];
         }
         catch
         {

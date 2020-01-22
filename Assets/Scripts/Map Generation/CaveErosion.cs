@@ -43,7 +43,7 @@ public class CaveErosion
     {
         float totalWeight = coords.Sum(e => weights[e]);
 
-        float randomNum = (float)GameManager.Instance.rng.NextDouble() * totalWeight;
+        float randomNum = (float)GameManager.Instance.levelGenRng.NextDouble() * totalWeight;
 
         Coord selectedCoord = new Coord(-1, -1);
         foreach (Coord coord in coords)

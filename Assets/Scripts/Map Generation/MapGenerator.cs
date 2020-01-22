@@ -48,7 +48,7 @@ public class MapGenerator : MonoBehaviour
     private void Awake()
     {
         meshGen = GetComponent<MeshGenerator>();
-        random = GameManager.Instance.rng;
+        random = GameManager.Instance.levelGenRng;
     }
 
     private void Start()

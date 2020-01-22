@@ -91,12 +91,12 @@ public class LevelManager : MonoBehaviour
         }
 
         // Pick a random room
-        Room spawnRoom = rooms[GameManager.Instance.rng.Next() % rooms.Count];
+        Room spawnRoom = rooms[GameManager.Instance.levelGenRng.Next() % rooms.Count];
 
         // Pick a random Coord where the player will appear
         // Will need to replace this with the entrance's position
         // Which is going to be set in the same way when creating a level
-        Coord spawnCoord = spawnRoom.innerTiles[GameManager.Instance.rng.Next() % spawnRoom.innerTiles.Count];
+        Coord spawnCoord = spawnRoom.innerTiles[GameManager.Instance.levelGenRng.Next() % spawnRoom.innerTiles.Count];
 
         Debug.Log(string.Format("Spawn pos X: {0} Y: {1}", spawnCoord.tileX, spawnCoord.tileY));
 
@@ -108,7 +108,8 @@ public class LevelManager : MonoBehaviour
     {
         GameManager.Instance.playerController = Instantiate(GameManager.Instance.playerPrefab, 
             new Vector3(spawnPos.x, 
-            GameManager.Instance.meshGenerator.groundHeightMap[Mathf.Clamp(spawnCoord.tileX, 0, currentLevel.width), Mathf.Clamp(spawnCoord.tileY, 0, currentLevel.height)] + GameManager.Instance.meshGenerator.groundYPosition, spawnPos.z), 
+            GameManager.Instance.meshGenerator.groundHeightMap[Mathf.Clamp(spawnCoord.tileX, 0, currentLevel.width), Mathf.Clamp(spawnCoord.tileY, 0, currentLevel.height)] + GameManager.Instance.meshGenerator.groundYPosition, 
+            spawnPos.z), 
             Quaternion.identity)
             .GetComponent<PlayerController>();
         GameManager.Instance.playerController.transform.Translate(Vector3.up * GameManager.Instance.playerController.GetComponent<Collider>().bounds.size.y / 2);

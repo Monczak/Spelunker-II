@@ -15,7 +15,7 @@ public class Level
     public int randomFillPercent;
 
     public Vector2Int exitSize;
-    public int borderSize = 10;
+    public int borderSize = 12;
 
     public LevelTile[,] map, borderedMap;
 

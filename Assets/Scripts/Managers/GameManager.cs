@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     public void PrepareForPlayerSpawn(Vector2Int pos)
     {
         Debug.Log($"Setting spawn position to {pos}");
-        Vector3 truePos = mapGenerator.CoordToWorldPoint(new Coord(pos.x, pos.y)) - Vector3.one * .5f;
+        Vector3 truePos = mapGenerator.CoordToWorldPoint(new Coord(pos.x, pos.y));
         spawnPos = truePos;
         spawnCoord = new Coord(pos.x, pos.y);
         willPlayerSpawnRandomly = false;

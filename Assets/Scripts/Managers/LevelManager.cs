@@ -269,23 +269,26 @@ public class LevelManager : MonoBehaviour
 
         HorizontalLevelExit oppositeExit = (HorizontalLevelExit)currentLevel.sideConnections[((int)((HorizontalLevelExit)lastLevelConnection.exit).direction + 2) % 4].exit;
 
-        Vector2Int pos = new Vector2Int(oppositeExit.pos.tileX, oppositeExit.pos.tileY) - Vector2Int.one * currentLevel.borderSize;
+        Vector2Int pos = new Vector2Int(
+            oppositeExit.playerSpawnCoord.tileX,
+            oppositeExit.playerSpawnCoord.tileY
+            ) - Vector2Int.one * currentLevel.borderSize;
 
-        switch (oppositeExit.direction)
-        {
-            case HorizontalDirection.West:
-                pos += Vector2Int.right * (oppositeExit.size.x / 2 - 1);
-                break;
-            case HorizontalDirection.North:
-                pos += Vector2Int.down * (oppositeExit.size.y / 2 - 1);
-                break;
-            case HorizontalDirection.East:
-                pos += Vector2Int.left * (oppositeExit.size.x / 2 - 1);
-                break;
-            case HorizontalDirection.South:
-                pos += Vector2Int.up * (oppositeExit.size.y / 2 - 1);
-                break;
-        }
+        //switch (oppositeExit.direction)
+        //{
+        //    case HorizontalDirection.West:
+        //        pos += Vector2Int.right * (oppositeExit.size.x / 2 - 1);
+        //        break;
+        //    case HorizontalDirection.North:
+        //        pos += Vector2Int.down * (oppositeExit.size.y / 2 - 1);
+        //        break;
+        //    case HorizontalDirection.East:
+        //        pos += Vector2Int.left * (oppositeExit.size.x / 2 - 1);
+        //        break;
+        //    case HorizontalDirection.South:
+        //        pos += Vector2Int.up * (oppositeExit.size.y / 2 - 1);
+        //        break;
+        //}
 
         GameManager.Instance.PrepareForPlayerSpawn(pos);
         //SpawnPlayer();

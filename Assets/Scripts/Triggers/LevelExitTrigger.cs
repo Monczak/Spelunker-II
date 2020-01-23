@@ -21,7 +21,7 @@ public class LevelExitTrigger : MonoBehaviour
         //Debug.Log("Trigger entered!");
         if (other.gameObject.CompareTag("Player"))
         {
-            if (OnPlayerEnterTrigger != null)
+            if (OnPlayerEnterTrigger != null && Input.GetKey(KeyCode.Space))
             {
                 OnPlayerEnterTrigger.Invoke(connection);
             }
